@@ -1,8 +1,8 @@
 function attempt(avialable, allowed, preferred){
     let answer = [];
     let allowedArr = [];
-    //сформируем массив из элементов массива allowed, входящих в массив avialable
-    if (allowed.indexOf('any') != -1){
+    //сформуємо масив з елементів массива allowed, які входять до масиву avialable, якщо у масиві allowed є значення 'any', то скопіюємо масив avialable у масив allowedArr 
+        if (allowed.indexOf('any') != -1){
         allowedArr = [...avialable];
     } else {
     allowedArr = allowed.filter((function(item) {
@@ -13,10 +13,10 @@ function attempt(avialable, allowed, preferred){
             }
         })); 
     }    
-    //если массив пустой, дальнейшие проверки не имеют смысла
+    //якщо масив allowedArr пустий - подальші перевірки не мають сенсу
     if (allowedArr.length == 0) {
         return (allowedArr);
-    //если массив не пустой - проверим вхождения значений из массива preferred в новый массив allowedArr 
+    //если масив не пустій - перевіремо входження значень з масиву preferred в новий масив allowedArr, якщо у масиві preferred є значення 'any', то скопіюємо масив allowedArr у масив answer
     } else {
 
         if (preferred.indexOf('any') != -1){
@@ -25,34 +25,41 @@ function attempt(avialable, allowed, preferred){
 
 
             for (let i = 0; i < preferred.length; i++){
-            //перебираем значения массива preferred и сравниваем их со значениями нового массива allowedArr
+            //перебираємо значення масиву preferred і порівнюємо їх зі значенням масиву allowedArr 
                 for (let j = 0; j < allowedArr.length; j++){
-                    //если значение совпадает - добавляем его в массив ответа
+                    //якщо значення співпадає - дадаємо його у масив answer
                     if (preferred[i] == allowedArr[j]){
                         answer.push(allowedArr[j]);
-                    } else if   (allowedArr.indexOf(preferred[i]) == -1 //если текущее проверяемое значение не содержится далее в массиве preferred
-                                && answer.indexOf(preferred[i]) == -1 //если текущее проверяемое значение не содержится в массиве ответов
-                                && answer.length < preferred.length //если длина массива овтетов меньше длины массива preferred
-                                && answer.length < allowedArr.length) //если длина массива овтетов меньше длины массива allowedArr
+                    //якщо значення не співпадає - зробимо декілька перевірок    
+                    } else if   (allowedArr.indexOf(preferred[i]) == -1 //якщо поточне значення не міститься далі у масиві allowedArr
+                                && answer.indexOf(preferred[i]) == -1 //якщо поточне значення не міститься у масиві answer
+                                && answer.length < preferred.length //якщо довжина масиву answer менша за довжина масиву preferred
+                                && answer.length < allowedArr.length) //якщо довжина масиву answer менша за довжина масиву allowedArr
                                 {
-                        //найдем ближайшее значение 
+                        //знайдемо найближчі білше та менше значення
                         let closestBigger = Math.min(...allowedArr.filter(v => v > preferred[i]));
                         let closestLower = Math.max(...allowedArr.filter(v => v < preferred[i]));
                     
-                        //найдем ближайшее значение из большего и меньшего
+                        //знайдемо абсолютне значення різніці між поточним значенням і найближчими більшим та меншим 
                         let biggerAbs = Math.abs(preferred[i]-closestBigger);
                         let lowerAbs = Math.abs(preferred[i]-closestLower);
                         
-                        //в зависимости от того, какое из значений ближе вставим его в массив ответов
+                        //в залежності від того, яке із значень ближче - додамо його до масиву answer
+                        //якщо значення ближче до більшого або вони рівні
                         if (biggerAbs <= lowerAbs){
+                            //та не знаходиться вже у масиві answer - додамо найближче більше до масиву answer
                             if (answer.indexOf(closestBigger) == -1){
                                 answer.push(closestBigger);
+                            //та якщо найближче більше вже є у масиві, а найближчого меншого немає та воно не дорівнює безкінечності - додамо найближче менше до масиву answer    
                             } else if (answer.indexOf(closestLower) == -1 && closestLower != Infinity){
                                 answer.push(closestLower);
-                            }     
+                            } 
+                        //якщо значення ближче до меншого        
                         } else if (lowerAbs < biggerAbs){
+                            //та не знаходиться вже у масиві answer - додамо найближче менше до масиву answer
                             if (answer.indexOf(closestLower) == -1){
                                 answer.push(closestLower);
+                            //та якщо найближче менше вже є у масиві, а найближчого більшого немає та воно не дорівнює безкінечності - додамо найближче більше до масиву answer    
                             } else if (answer.indexOf(closestBigger) == -1 && closestBigger != Infinity){
                                 answer.push(closestBigger);
                             }  
@@ -66,6 +73,7 @@ function attempt(avialable, allowed, preferred){
       
     return answer;
 };
+//перевірка
 console.log('avialable:[240, 360, 720], allowed:[360, 720], preffered:[1080], redurned:['+ attempt([240, 360, 720], [360, 720], [1080])+']');
 console.log('avialable:[240, 720], allowed:[360, 720], preffered:[1080], redurned:['+ attempt([240, 720], [360, 720], [1080])+']');
 console.log('avialable:[240], allowed:[360, 720], preffered:[1080], redurned:['+ attempt([240], [360, 720], [1080])+']');
