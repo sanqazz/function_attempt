@@ -74,15 +74,15 @@ function attempt(avialable, allowed, preferred){
     return answer;
 };
 //перевірка
-console.log('avialable:[240, 360, 720], allowed:[360, 720], preffered:[1080], returned:['+ attempt([240, 360, 720], [360, 720], [1080])+']');
-console.log('avialable:[240, 720], allowed:[360, 720], preffered:[1080], returned:['+ attempt([240, 720], [360, 720], [1080])+']');
-console.log('avialable:[240], allowed:[360, 720], preffered:[1080], returned:['+ attempt([240], [360, 720], [1080])+']');
-console.log('avialable:[240, 360, 720], allowed:[240, 360, 720, 1080], preffered:[240,360], returned:['+ attempt([240, 360, 720], [240, 360, 720, 1080], [240,360])+']');
-console.log('avialable:[240, 720], allowed:[240, 360, 720, 1080], preffered:[240,360], returned:['+ attempt([240, 720], [240, 360, 720, 1080], [240,360])+']');
-console.log('avialable:[240, 720], allowed:[240, 360, 1080], preffered:[240,360], returned:['+ attempt([240, 720], [240, 360, 1080], [240,360])+']');
-console.log('avialable:[720], allowed:[240, 360, 1080], preffered:[240,360], returned:['+ attempt([720], [240, 360, 1080], [240,360])+']');
-console.log('avialable:[240, 360], allowed:[240, 360], preffered:[720, 1080], returned:['+ attempt([240, 360], [240, 360], [720, 1080])+']');
-console.log('avialable:[240, 360, 720], allowed:[360, "any"], preffered:[360, 720], returned:['+ attempt([240, 360, 720], [360, "any"], [360, 720])+']');
-console.log('avialable:[240, 360, 720], allowed:[240, 360, 720], preffered:["any", 720], returned:['+ attempt([240, 360, 720], [240, 360, 720], ["any", 720])+']');
-console.log('avialable:[240, 360, 720], allowed:[360, 1080], preffered:["any", 720], returned:['+ attempt([240, 360, 720], [360, 1080], ["any", 720])+']');
-console.log('avialable:[240, 360, 720], allowed:[1080], preffered:["any", 720], returned:['+ attempt([240, 360, 720], [1080], ["any", 720])+']');
+console.log('avialable:[240, 360, 720], allowed:[360, 720], preferred:[1080], returned:['+ attempt([240, 360, 720], [360, 720], [1080])+']');
+console.log('avialable:[240, 720], allowed:[360, 720], preferred:[1080], returned:['+ attempt([240, 720], [360, 720], [1080])+']');
+console.log('avialable:[240], allowed:[360, 720], preferred:[1080], returned:['+ attempt([240], [360, 720], [1080])+']');
+console.log('avialable:[240, 360, 720], allowed:[240, 360, 720, 1080], preferred:[240,360], returned:['+ attempt([240, 360, 720], [240, 360, 720, 1080], [240,360])+']');
+console.log('avialable:[240, 720], allowed:[240, 360, 720, 1080], preferred:[240,360], returned:['+ attempt([240, 720], [240, 360, 720, 1080], [240,360])+']');
+console.log('avialable:[240, 720], allowed:[240, 360, 1080], preferred:[240,360], returned:['+ attempt([240, 720], [240, 360, 1080], [240,360])+']');
+console.log('avialable:[720], allowed:[240, 360, 1080], preferred:[240,360], returned:['+ attempt([720], [240, 360, 1080], [240,360])+']');
+console.log('avialable:[240, 360], allowed:[240, 360], preferred:[720, 1080], returned:['+ attempt([240, 360], [240, 360], [720, 1080])+']');
+console.log('avialable:[240, 360, 720], allowed:[360, "any"], preferred:[360, 720], returned:['+ attempt([240, 360, 720], [360, "any"], [360, 720])+']');
+console.log('avialable:[240, 360, 720], allowed:[240, 360, 720], preferred:["any", 720], returned:['+ attempt([240, 360, 720], [240, 360, 720], ["any", 720])+']');
+console.log('avialable:[240, 360, 720], allowed:[360, 1080], preferred:["any", 720], returned:['+ attempt([240, 360, 720], [360, 1080], ["any", 720])+']');
+console.log('avialable:[240, 360, 720], allowed:[1080], preferred:["any", 720], returned:['+ attempt([240, 360, 720], [1080], ["any", 720])+']');
